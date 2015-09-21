@@ -1,7 +1,0 @@
-{
-    "name": "fire-starter-theme",
-    "dependencies": {        
-        "bootstrap-sass": "3.2.0",
-        "jquery": "2.1.1"
-    }
-}
