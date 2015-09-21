@@ -1,0 +1,31 @@
+/*!
+Theme Name: Fire Wordpress Starter Theme
+Theme URI: 
+Author URI:http://deanngo.wordpress.com
+Description: Starter Theme With Grunt Bootstrap
+Author: Dean Ngo
+Version: 1.0
+License: GNU General Public License v2.0
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+@import "_bootstrap_variables.scss";
+@import "stylesheets/_bootstrap.scss";
+
+/* Alignment ----------------------------------------------- */
+
+.alignleft {
+    display: inline;
+    float: left;
+    margin-right: 1.5em;
+}
+.alignright {
+    display: inline;
+    float: right;
+    margin-left: 1.5em;
+}
+.aligncenter {
+    clear: both;
+    display: block;
+    margin: 0 auto;
+}
