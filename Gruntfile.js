@@ -39,12 +39,9 @@ module.exports = function(grunt) {
             },
             compress: true
         },
-
-         // run $ grunt copy from the terminal to copy the files listed below.
          
         copy: {
             main: {
-
                 files: [
                     {
                         expand: true,
@@ -56,11 +53,6 @@ module.exports = function(grunt) {
                         dest: 'assets/fonts',
                         src: ['**'],
                         cwd: 'bower_components/bootstrap-sass/assets/fonts'
-                    }, {
-                        expand: true,
-                        dest: 'assets/',
-                        src: '_bootstrap.scss',
-                        cwd: 'bower_components/bootstrap-sass/assets/stylesheets'
                     }, {
                         expand: true,
                         dest: 'javascripts',
