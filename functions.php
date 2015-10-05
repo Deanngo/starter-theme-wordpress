@@ -1,5 +1,5 @@
 <?php
-$sage_includes = [
+$fire_includes = [
   'lib/utils.php',                 // Utility functions
   'lib/init.php',                  // Initial theme setup and constants
   'lib/wrapper.php',               // Theme wrapper class
@@ -9,7 +9,7 @@ $sage_includes = [
   'lib/extras.php',                // Custom functions
 ];
 
-foreach ($sage_includes as $file) {
+foreach ($fire_includes as $file) {
   if (!$filepath = locate_template($file)) {
     trigger_error(sprintf(__('Error locating %s for inclusion', 'fire'), $file), E_USER_ERROR);
   }
@@ -23,7 +23,7 @@ function fire_enqueue_assets() {
     
     // bower:css
     // endbower
-
+    
     // bower:js
     // endbower
 }

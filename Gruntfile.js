@@ -3,14 +3,14 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         watch: {
             src: {
-                files: ['**/*.scss', '**/*.php', '**/**/*.scss', ],
+                files: ['**/*.scss', '**/*.php', '**/**/*.scss'],
                 tasks: ['compass']
             },
             options: {
                 livereload: true
             },
             javascripts: {
-                files: "javascripts/app.js",
+                files: "assets/javascripts/app.js",
                 tasks: ['uglify']
             }
         },
@@ -19,9 +19,9 @@ module.exports = function(grunt) {
             dist: {
                 options: {
                     sassDir: 'assets',
-                    cssDir: '',
-                    imagesDir: 'images',
-                    javascriptsDir: 'javascripts',
+                    cssDir: 'assets',
+                    imagesDir: 'assets/images',
+                    javascriptsDir: 'assets/javascripts',
                     fontsDir: 'assets/fonts',
                     outputStyle: 'compressed',
                     relativeAssets: false,
@@ -34,10 +34,9 @@ module.exports = function(grunt) {
         uglify: {
             build: {
                 files: {                     
-                    'javascripts/app.min.js': ['javascripts/app.js']
+                    'assets/javascripts/app.min.js': ['assets/javascripts/app.js']
                 }
-            },
-            compress: true
+            }
         },
          
         copy: {
@@ -55,12 +54,12 @@ module.exports = function(grunt) {
                         cwd: 'bower_components/bootstrap-sass/assets/fonts'
                     }, {
                         expand: true,
-                        dest: 'javascripts',
+                        dest: 'assets/javascripts',
                         src: ['bootstrap.min.js'],
                         cwd: 'bower_components/bootstrap-sass/assets/javascripts'
                     }, {
                         expand: true,
-                        dest: 'javascripts',
+                        dest: 'assets/javascripts',
                         src: ['bootstrap.js'],
                         cwd: 'bower_components/bootstrap-sass/assets/javascripts'
                     }
