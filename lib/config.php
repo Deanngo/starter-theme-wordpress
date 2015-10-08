@@ -16,10 +16,19 @@ add_theme_support('soil-jquery-cdn');       // Enable to load jQuery from the Go
 /**
  * Configuration values
  */
+ define('ENV', 'development');
 
 if (!defined('DIST_DIR')) {
   // Path to the build directory for front-end assets
   define('DIST_DIR', '/dist/');
+}
+
+if (!defined('ACCESS_PATH')) {
+  if(ENV === 'development'){
+       define('ACCESS_PATH', 'assets');
+  }else{
+      define('ACCESS_PATH', '');
+  }
 }
 
 /**
