@@ -1,12 +1,12 @@
 <?php
 $fire_includes = [
-  'lib/utils.php',                 // Utility functions
-  'lib/init.php',                  // Initial theme setup and constants
-  'lib/wrapper.php',               // Theme wrapper class
-  'lib/config.php',                // Configuration
-  'lib/assets.php',                // Scripts and stylesheets
-  'lib/titles.php',                // Page titles
-  'lib/extras.php',                // Custom functions
+  'lib/utils.php',       
+  'lib/init.php',        
+  'lib/wrapper.php',     
+  'lib/config.php',      
+  'lib/assets.php',      
+  'lib/titles.php',      
+  'lib/extras.php',      
 ];
 
 foreach ($fire_includes as $file) {

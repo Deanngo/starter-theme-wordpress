@@ -5,7 +5,7 @@ namespace Roots\Fire\Extras;
 use Roots\Fire\Config;
 
 /**
- * Add <body> classes
+ * Add some class to body
  */
 function body_class($classes) {
   // Add page slug if it doesn't exist
@@ -15,19 +15,14 @@ function body_class($classes) {
     }
   }
 
-  // Add class if sidebar is active
-  if (Config\display_sidebar()) {
-    $classes[] = 'sidebar-primary';
-  }
-
   return $classes;
 }
 add_filter('body_class', __NAMESPACE__ . '\\body_class');
 
 /**
- * Clean up the_excerpt()
+ * Clean up the_excerpt
  */
 function excerpt_more() {
-  return ' &hellip; <a href="' . get_permalink() . '">' . __('Continued', 'fire') . '</a>';
+  return ' &hellip; <a href="' . get_permalink() . '">' . __('Read more', 'fire') . '</a>';
 }
 add_filter('excerpt_more', __NAMESPACE__ . '\\excerpt_more');

@@ -4,30 +4,28 @@ namespace Roots\Fire\Wrapper;
 
 /**
  * Theme wrapper
- *
- * @link https://roots.io/sage/docs/theme-wrapper/
- * @link http://scribu.net/wordpress/theme-wrappers.html
+ * 
  */
 
 function template_path() {
-  return SageWrapping::$main_template;
+  return FireWrapping::$main_template;
 }
 
 function sidebar_path() {
-  return new SageWrapping('templates/sidebar.php');
+  return new FireWrapping('templates/sidebar.php');
 }
 
-class SageWrapping {
-  // Stores the full path to the main template file
+class FireWrapping {
+  // full path
   public static $main_template;
 
-  // Basename of template file
+  // Basename
   public $slug;
 
-  // Array of templates
+  // Templates
   public $templates;
 
-  // Stores the base name of the template file; e.g. 'page' for 'page.php' etc.
+  //
   public static $base;
 
   public function __construct($template = 'base.php') {
@@ -41,12 +39,12 @@ class SageWrapping {
   }
 
   public function __toString() {
-    $this->templates = apply_filters('sage/wrap_' . $this->slug, $this->templates);
+    $this->templates = apply_filters('fire/wrap_' . $this->slug, $this->templates);
     return locate_template($this->templates);
   }
 
   public static function wrap($main) {
-    // Check for other filters returning null
+    // Check
     if (!is_string($main)) {
       return $main;
     }
@@ -58,7 +56,7 @@ class SageWrapping {
       self::$base = false;
     }
 
-    return new SageWrapping();
+    return new FireWrapping();
   }
 }
-add_filter('template_include', [__NAMESPACE__ . '\\SageWrapping', 'wrap'], 109);
+add_filter('template_include', [__NAMESPACE__ . '\\FireWrapping', 'wrap'], 109);

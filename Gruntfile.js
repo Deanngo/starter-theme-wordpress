@@ -1,4 +1,4 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         watch: {
@@ -14,7 +14,6 @@ module.exports = function(grunt) {
                 tasks: ['uglify']
             }
         },
-
         compass: {
             dist: {
                 options: {
@@ -30,15 +29,13 @@ module.exports = function(grunt) {
                 }
             }
         },
-
         uglify: {
             build: {
-                files: {                     
+                files: {
                     'assets/javascripts/app.min.js': ['assets/javascripts/app.js']
                 }
             }
         },
-         
         copy: {
             main: {
                 files: [
@@ -71,7 +68,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-uglify');    
-    grunt.registerTask('default', ['copy','compass', 'uglify']);
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.registerTask('default', ['copy', 'compass', 'uglify']);
 
 };
