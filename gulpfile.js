@@ -94,7 +94,7 @@ gulp.task('copyScripts', function(){
 
 //Fonts
 gulp.task('copyFonts', function(){
-    return gulp.src(['assets/fonts/*', 'assets/fonts/*'])
+    return gulp.src(['assets/fonts/*', 'assets/fonts/**/*'])
     .pipe(gulp.dest('dist/fonts'));
 });
 
@@ -122,4 +122,10 @@ gulp.task('default', ['compass', 'scriptsConcat', 'watch']);
 //Gulp install resource
 gulp.task('install', ['coppyJquery', 'coppyBootstrapStyle', 'coppyBootstrapScript', 'coppyBootstrapFont']);
 
-gulp.task('build', ['scriptsConcat', 'copyStyles', 'copyScripts', 'copyFonts', 'imagemin', 'copyTheme']);
+/**
+ * Implement task synchronized
+ * - After clean all file in dist folder, other task will be run.
+ */
+gulp.task('build',['clean'], function(){
+    gulp.start(['copyFonts','copyStyles', 'copyScripts', 'imagemin', 'copyTheme']);
+});

@@ -9,29 +9,5 @@ License: GNU General Public License v2.0
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
-/*@import "stylesheets/bootstrap/_variables.scss";*/
 @import "stylesheets/_bootstrap.scss";
-
-/* Alignment ----------------------------------------------- */
-
-.alignleft {
-    display: inline;
-    float: left;
-    margin-right: 1.5em;
-}
-.alignright {
-    display: inline;
-    float: right;
-    margin-left: 1.5em;
-}
-.aligncenter {
-    clear: both;
-    display: block;
-    margin: 0 auto;
-}
-
-.show-image{
-    background: url(images/Credit-Card-Logos.png);
-    width: 200px;
-    height: 150px;
-}
+@import "stylesheets/_common.scss";
