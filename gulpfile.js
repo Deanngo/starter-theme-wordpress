@@ -4,7 +4,7 @@
 var gulp = require('gulp'); 
 
 // Include Our Plugins
-var compass = require('gulp-compass');
+var sass = require('gulp-sass');
 var minifyCSS = require('gulp-minify-css');
 var concat = require('gulp-concat');
 var copy = require('gulp-copy');
@@ -24,10 +24,9 @@ var pngquant = require('imagemin-pngquant');
 
 //watch task
 gulp.task('watch', function() {   
-    gulp.watch('assets/*.scss', ['compass']);
-    gulp.watch('assets/**/*.scss', ['compass']);
-    gulp.watch('assets/***/*.scss', ['compass']);
-    gulp.watch('assets/javascripts/*.js');
+    gulp.watch('assets/*.scss', ['gulpSass']);
+    gulp.watch('assets/**/*.scss', ['gulpSass']);
+    gulp.watch('assets/***/*.scss', ['gulpSass']);    
 });
 
 //Concat all *JS Files
@@ -38,14 +37,12 @@ gulp.task('scriptsConcat', function() {
 });
 
 //Compass task
-gulp.task('compass', function() {
-  gulp.src('assets/*.scss')
-    .pipe(compass({
-      css: 'assets',
-      sass: 'assets'            
-    }))
-    .pipe(minifyCSS())
-    .pipe(gulp.dest('assets'));
+
+gulp.task('gulpSass', function() {
+    gulp.src(['assets/**/*.scss', 'assets/*.scss'])
+        .pipe(sass().on('error', sass.logError))
+        .pipe(minifyCSS())
+        .pipe(gulp.dest('assets/stylesheets'));
 });
 
 /**********************Install*********************/
@@ -117,7 +114,7 @@ gulp.task('copyTheme', function(){
 /**************************END BUILD****************************/
 
 // Default Task
-gulp.task('default', ['compass', 'scriptsConcat', 'watch']);
+gulp.task('default', ['gulpSass', 'scriptsConcat', 'watch']);
 
 //Gulp install resource
 gulp.task('install', ['coppyJquery', 'coppyBootstrapStyle', 'coppyBootstrapScript', 'coppyBootstrapFont']);

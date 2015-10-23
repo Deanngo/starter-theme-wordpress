@@ -218,6 +218,7 @@ blockquote.right {}
 .commentlist li ul.children li.alt {}
 .commentlist li ul.children li.byuser {}
 .commentlist li ul.children li.comment {}
+
 .commentlist li ul.children li.bypostauthor {}
 .commentlist li ul.children li.comment-author-admin {}
 
@@ -225,6 +226,7 @@ blockquote.right {}
 #cancel-comment-reply a {}
 
 /*Comment Form */
+
 #respond { } 
 #reply-title { } 
 #cancel-comment-reply-link { }
@@ -241,5 +243,7 @@ blockquote.right {}
 .comment-form-url { }
 .comment-form-comment { } 
 .form-allowed-tags { } 
-.form-submit
+.form-submit{
+        display: none;        
+}
 
