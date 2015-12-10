@@ -1,8 +1,6 @@
 <?php
-$fire_includes = [
-  'lib/utils.php',       
-  'lib/init.php',        
-  'lib/wrapper.php',     
+$fire_includes = [  
+  'lib/init.php',             
   'lib/config.php',      
   'lib/assets.php',      
   'lib/titles.php',      
@@ -17,14 +15,3 @@ foreach ($fire_includes as $file) {
   require_once $filepath;
 }
 unset($file, $filepath);
-
-add_action('wp_enqueue_scripts', 'fire_enqueue_assets');
-function fire_enqueue_assets() {
-    
-    // bower:css
-    // endbower
-    
-    // bower:js
-    // endbower
-}
-

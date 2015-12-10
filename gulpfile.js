@@ -22,53 +22,67 @@ var pngquant = require('imagemin-pngquant');
  * 
  */
 
-//watch task
+/**
+ * @Description Watch all scss and javascript files to build
+ */
+
 gulp.task('watch', function() {   
-    gulp.watch('assets/*.scss', ['gulpSass']);
-    gulp.watch('assets/**/*.scss', ['gulpSass']);
-    gulp.watch('assets/***/*.scss', ['gulpSass']);    
+    gulp.watch('assets/scss/*.scss', ['gulpSass']);
+    gulp.watch('assets/scss/**/*.scss', ['gulpSass']);
+    gulp.watch('assets/scss/***/*.scss', ['gulpSass']);
+    gulp.watch('assets/javascripts/app.js', ['concat']);
 });
 
-//Concat all *JS Files
-gulp.task('scriptsConcat', function() {
-  return gulp.src(['assets/javascripts/*.js'])
+/**
+ * @Description Concat all javascript files to a file with compress
+ */
+
+gulp.task('concat', function() {
+  return gulp.src(['assets/javascripts/jquery.min.js', 'assets/javascripts/bootstrap.min.js', 'assets/javascripts/app.js'])
     .pipe(concat('app.min.js'))    
     .pipe(gulp.dest('assets/javascripts'));
 });
 
-//Compass task
+/**
+ *@Description Compiler will be build scss code to css
+ *
+ */
 
 gulp.task('gulpSass', function() {
-    gulp.src(['assets/**/*.scss', 'assets/*.scss'])
+    gulp.src(['assets/scss/**/*.scss', 'assets/scss/*.scss'])
         .pipe(sass().on('error', sass.logError))
         .pipe(minifyCSS())
-        .pipe(gulp.dest('assets/stylesheets'));
+        .pipe(gulp.dest('assets/'));
 });
 
-/**********************Install*********************/
-
-gulp.task('coppyJquery', function(){
+/**
+ * @Description Copy requirement resource
+ * In this session system will be copy all resources file like bootstrap, etc.. to your theme
+ */
+gulp.task('cp_jquery', function(){
     return gulp.src(['bower_components/jquery/dist/jquery.min.js'])
     .pipe(gulp.dest('assets/javascripts'));
 });
 
-gulp.task('coppyBootstrapStyle', function(){
+gulp.task('cp_bootstrap', function(){
     return gulp.src(['bower_components/bootstrap-sass/assets/stylesheets/**'])
     .pipe(gulp.dest('assets/stylesheets'));
 });
 
-gulp.task('coppyBootstrapScript', function(){
+gulp.task('cp_boostrap_js', function(){
     return gulp.src(['bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js'])
     .pipe(gulp.dest('assets/javascripts'));
 });
 
-gulp.task('coppyBootstrapFont', function(){
+gulp.task('cp_bootstrap_fonts', function(){
     return gulp.src(['bower_components/bootstrap-sass/assets/fonts/**'])
     .pipe(gulp.dest('assets/fonts'));
 });
-/*************************END Install******************/
 
-/**************************BUILD**********************/
+
+/**
+ * @Description This session will be copy all theme file to dist folder
+ */
 
 //Clean
 gulp.task('clean', function(){
@@ -78,21 +92,21 @@ gulp.task('clean', function(){
 
 //styles
 gulp.task('copyStyles', function(){
-    return gulp.src(['assets/style.css'])
-    .pipe(gulp.dest('dist'));
+    return gulp.src(['assets/css/style.css'])
+    .pipe(gulp.dest('dist/assets/css'));
 });
 
 //Javascript
 gulp.task('copyScripts', function(){
     return gulp.src(['assets/javascripts/app.min.js'])
     .pipe(uglify())
-    .pipe(gulp.dest('dist/javascripts'));
+    .pipe(gulp.dest('dist/assets/js'));
 });
 
 //Fonts
 gulp.task('copyFonts', function(){
     return gulp.src(['assets/fonts/*', 'assets/fonts/**/*'])
-    .pipe(gulp.dest('dist/fonts'));
+    .pipe(gulp.dest('dist/assets/fonts'));
 });
 
 //Minifier images
@@ -102,7 +116,7 @@ gulp.task('imagemin', function () {
             progressive: true,
             use: [pngquant()]
         }))
-        .pipe(gulp.dest('dist/images'));
+        .pipe(gulp.dest('dist/assets/images'));
 });
 
 //Theme
@@ -114,14 +128,15 @@ gulp.task('copyTheme', function(){
 /**************************END BUILD****************************/
 
 // Default Task
-gulp.task('default', ['gulpSass', 'scriptsConcat', 'watch']);
+gulp.task('default', ['gulpSass', 'concat', 'watch']);
 
 //Gulp install resource
-gulp.task('install', ['coppyJquery', 'coppyBootstrapStyle', 'coppyBootstrapScript', 'coppyBootstrapFont']);
+gulp.task('install', ['cp_jquery', 'cp_bootstrap', 'cp_boostrap_js', 'cp_bootstrap_fonts']);
 
 /**
- * Implement task synchronized
- * - After clean all file in dist folder, other task will be run.
+ * @Description Implement task synchronized
+ *
+ * After clean all file in dist folder, other task will be run.
  */
 gulp.task('build',['clean'], function(){
     gulp.start(['copyFonts','copyStyles', 'copyScripts', 'imagemin', 'copyTheme']);
